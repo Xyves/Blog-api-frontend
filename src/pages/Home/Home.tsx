@@ -1,4 +1,4 @@
-const Home = () => {
+export const Home = () => {
   return (
     <>
       <section>
@@ -9,7 +9,10 @@ const Home = () => {
               className="max-w-sm rounded-lg shadow-2xl"
             />
             <div>
-              <h1 className="text-5xl font-bold">Welcome</h1>
+              <h1 className="text-5xl font-bold"></h1>
+              <button className="btn-primary btn w-64">
+                <a href="/blogs">Start Reading</a>
+              </button>
               <p className="py-5">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia
                 minima laboriosam maxime sed dignissimos harum provident itaque
@@ -17,7 +20,6 @@ const Home = () => {
                 perferendis aspernatur quo nisi excepturi. Ex, ullam odio iusto
                 esse necessitatibus doloremque repudiandae!
               </p>
-              <button className="btn-primary btn">Get Started</button>
             </div>
           </div>
         </div>
