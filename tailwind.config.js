@@ -3,9 +3,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
+    fontFamily: {
+      helvetica: ["Helvetica", "sans-serif", "arial"],
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "night", "dim"],
+    themes: ["light", "night", "dim", "emerald", "retro"],
   },
 };
