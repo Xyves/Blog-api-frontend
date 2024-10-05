@@ -1,13 +1,53 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import "primeicons/primeicons.css";
-
+import { useState } from "react";
 export const LayoutHeader: FC = () => {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night",
+  );
+  const handleToggle = () => {
+    setTheme((prevTheme) => (prevTheme === "night" ? "emerald" : "night"));
+  };
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html")?.setAttribute("data-theme", localTheme);
+    console.log(`Theme updated to: ${theme}`);
+  }, [theme]);
   return (
     <>
       <header>
-        <nav className="navbar bg-base-100">
-          <div className="navbar-end ml-auto">
-            <button className="btn-ghost btn-circle btn">
+        <nav className="navbar mx-auto h-14  w-3/4 border-2 border-yellow-700 ">
+          <a href="/">
+            <span
+              className={`
+              ml-5 font-helvetica text-3xl font-bold 
+            `}
+            >
+              Bold Horizons
+            </span>
+          </a>
+
+          <div className="navbar-end ml-auto mr-5 flex border-2 border-red-500">
+            <label className="swap swap-rotate">
+              {/* Hidden checkbox for accessibility (optional) */}
+              <input
+                type="checkbox"
+                onChange={handleToggle}
+                className="hidden"
+              />
+
+              {/* Button with icon reflecting the current theme */}
+              <button
+                className="btn-ghost btn-circle btn"
+                onClick={handleToggle}
+              >
+                <div
+                  className={theme === "night" ? "pi pi-moon" : "pi pi-sun"}
+                ></div>
+              </button>
+            </label>
+            <button className="btn-ghost btn-circle btn  mr-10  ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -23,11 +63,10 @@ export const LayoutHeader: FC = () => {
                 />
               </svg>
             </button>
-            <button className="btn-ghost btn-circle btn">
-              <div className="pi-moon pi"></div>
+            <button className="mx-3 uppercase">
+              <a href="/login">sign in</a>
             </button>
           </div>
-          <button className="uppercase">sign in</button>
         </nav>
       </header>
     </>
