@@ -2,8 +2,8 @@ import { FC } from "react";
 
 export const LayoutFooter: FC = () => {
   return (
-    <footer className="footer flex   justify-center bg-base-300 p-6 text-base-content ">
-      <div className="flex items-center">
+    <footer className="space footer relative bottom-0 flex justify-center bg-[#232428]  p-4 text-lg tracking-wide text-base-content">
+      <section className="flex items-center">
         <span className="footer-title justify-center">
           Copyright &#169;
           <a
@@ -13,7 +13,7 @@ export const LayoutFooter: FC = () => {
             Xyves
           </a>
         </span>
-      </div>
+      </section>
     </footer>
   );
 };
