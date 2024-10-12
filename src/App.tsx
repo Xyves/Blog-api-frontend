@@ -6,6 +6,9 @@ import { Layout } from "./Layout/Layout";
 import { Error } from "./pages/Error";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Science from "./pages/Categories/Science";
+import Games from "./pages/Categories/Games";
+import Tech from "./pages/Categories/Tech";
 export const App = () => {
   return (
     <Routes>
@@ -13,9 +16,12 @@ export const App = () => {
         <Route index element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:blogId" element={<Blog />} />
+        <Route path="/games" element={<Games />} />
+        <Route path="/science" element={<Science />} />
+        <Route path="/tech" element={<Tech />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/error" element={<Error />} />
+        <Route path="*" element={<Error />} />
       </Route>
     </Routes>
   );
