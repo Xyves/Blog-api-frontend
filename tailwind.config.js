@@ -3,12 +3,24 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
-    fontFamily: {
-      helvetica: ["Helvetica", "sans-serif", "arial"],
-    },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    function ({ addVariant }) {
+      addVariant("child", "& > *");
+      addVariant("child-hover", "& > *:hover");
+    },
+  ],
   daisyui: {
-    themes: ["light", "night", "dim", "emerald", "retro"],
+    themes: [
+      "light",
+      "night",
+      "dim",
+      "emerald",
+      "retro",
+      "sunset",
+      "forest",
+      "dark",
+    ],
   },
 };
