@@ -3,10 +3,10 @@ import "primeicons/primeicons.css";
 import { useState } from "react";
 export const LayoutHeader: FC = () => {
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night",
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark",
   );
   const handleToggle = () => {
-    setTheme((prevTheme) => (prevTheme === "night" ? "emerald" : "night"));
+    setTheme((prevTheme) => (prevTheme === "dark" ? "emerald" : "dark"));
   };
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -17,18 +17,32 @@ export const LayoutHeader: FC = () => {
   return (
     <>
       <header>
-        <nav className="navbar mx-auto h-14  w-3/4 border-2 border-yellow-700 ">
+        <nav className=" navbar mx-auto  flex h-14 w-3/4  justify-evenly border-2 border-yellow-700 bg-[#232428] text-white">
           <a href="/">
             <span
               className={`
-              ml-5 font-helvetica text-3xl font-bold 
+              font-helvetica ml-5 text-3xl font-bold 
             `}
             >
               Bold Horizons
             </span>
           </a>
-
-          <div className="navbar-end ml-auto mr-5 flex border-2 border-red-500">
+          <section className="navbar-middle ml-auto">
+            <a href="/gaming">
+              <span className="mx-5 uppercase hover:text-green-600">
+                gaming
+              </span>
+            </a>
+            <a href="/science">
+              <span className="mx-5 uppercase hover:text-green-600">
+                science
+              </span>
+            </a>
+            <a href="/tech">
+              <span className="mx-5 uppercase hover:text-green-600">tech</span>
+            </a>
+          </section>
+          <section className="navbar-end mr-5 flex w-1/3 items-center   justify-end border-2 border-red-500">
             <label className="swap swap-rotate">
               {/* Hidden checkbox for accessibility (optional) */}
               <input
@@ -43,7 +57,7 @@ export const LayoutHeader: FC = () => {
                 onClick={handleToggle}
               >
                 <div
-                  className={theme === "night" ? "pi pi-moon" : "pi pi-sun"}
+                  className={theme === "dark" ? "pi pi-moon" : "pi pi-sun"}
                 ></div>
               </button>
             </label>
@@ -63,10 +77,16 @@ export const LayoutHeader: FC = () => {
                 />
               </svg>
             </button>
-            <button className="mx-3 uppercase">
+            <button className="mx-3 uppercase hover:text-white">
+              {/* TODO find a way to check if the user is logged in  */}
+              {/* {!user ? (
+                <a href="/login">sign in</a>
+              ) : (
+                <a href="/logout">logout</a>
+              )} */}
               <a href="/login">sign in</a>
             </button>
-          </div>
+          </section>
         </nav>
       </header>
     </>
