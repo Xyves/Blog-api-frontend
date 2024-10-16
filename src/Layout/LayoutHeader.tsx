@@ -1,12 +1,18 @@
 import { FC, useEffect } from "react";
 import "primeicons/primeicons.css";
 import { useState } from "react";
+import LoginModal from "@/components/LoginModal";
 export const LayoutHeader: FC = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark",
   );
+  const [showLogin, setShowLogin] = useState(false);
   const handleToggle = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "emerald" : "dark"));
+  };
+  const toggleModal = () => {
+    setShowLogin(!showLogin);
+    console.log(showLogin);
   };
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -14,6 +20,17 @@ export const LayoutHeader: FC = () => {
     document.querySelector("html")?.setAttribute("data-theme", localTheme);
     console.log(`Theme updated to: ${theme}`);
   }, [theme]);
+  useEffect(() => {
+    const root = document.querySelector("section");
+    if (showLogin) {
+      root.classList.add("blur-md");
+    } else {
+      root.classList.remove("blur-md");
+    }
+    return () => {
+      root.classList.remove("blur-md");
+    };
+  }, [showLogin]);
   return (
     <>
       <header>
@@ -77,17 +94,21 @@ export const LayoutHeader: FC = () => {
                 />
               </svg>
             </button>
-            <button className="mx-3 uppercase hover:text-white">
+            <button
+              className="mx-3 uppercase hover:text-white"
+              onClick={toggleModal}
+            >
+              Login
               {/* TODO find a way to check if the user is logged in  */}
               {/* {!user ? (
                 <a href="/login">sign in</a>
               ) : (
                 <a href="/logout">logout</a>
               )} */}
-              <a href="/login">sign in</a>
             </button>
           </section>
         </nav>
+        {showLogin && <LoginModal onClose={toggleModal} />}
       </header>
     </>
   );

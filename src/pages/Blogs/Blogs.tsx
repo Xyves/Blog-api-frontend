@@ -1,21 +1,37 @@
-import { useEffect, useState } from "react";
-import { fetchBlogs } from "../../api/Blogs";
-import { ThreeItemsRow } from "@/components/Blog/ThreeItemRow";
+import React, { useEffect, useState } from "react";
+import { fetchBlogs, fetchUserById } from "../../api/Blogs";
+
+import { PostList } from "../../components/Blog/PostList";
 export const Blogs = () => {
   // Fetch array with 15 posts  (2 rows * 3 1row*1 2rows *3 2 rows * 1)
   const [blogList, setBlogList] = useState([]);
   const setBlogs = (blogs: any) => {
     setBlogList(blogs);
+    console.log(blogList);
   };
-  // For loop over
+
+  // 14 posts fetch
   useEffect(() => {
-    const blogs = fetchBlogs();
-    setBlogs(blogs);
+    const fetchPosts = async () => {
+      const posts = await fetchBlogs();
+      if (posts) {
+        console.log(posts);
+        const data = await Promise.all(
+          posts.map(async (post) => {
+            const userResponse = await fetchUserById(post.userId);
+            console.log("Went throught");
+            // const updatedData = await userResponse.json();
+            return {
+              ...post,
+              author: userResponse.nickname, // Add userName to the post
+            };
+          }),
+        );
+        console.log(data);
+        setBlogs(data);
+      }
+    };
+    fetchPosts();
   }, []);
-  return (
-    <div className="container  mx-auto mt-8 grid min-h-full w-3/5 grid-cols-3 border-2 border-red-700 p-5 ">
-      <ThreeItemsRow blogs={blogList} />
-      <p className="h-24 w-24 bg-yellow-600"></p>
-    </div>
-  );
+  return <PostList posts={blogList} />;
 };
