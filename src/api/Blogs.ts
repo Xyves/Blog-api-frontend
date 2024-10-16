@@ -3,13 +3,13 @@ export const fetchBlogs = async () => {
     const response = await fetch(
       "https://blog-api-backend-production-6489.up.railway.app/api/posts",
       {
-        method: "GET",
+        mode: "cors",
       },
     );
-
     if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful" + response);
-      return response;
+      const json = response.json();
+      console.log("Promise resolved and HTTP status is successful");
+      return json;
     } else {
       console.error("Promise resolved but HTTP status failed");
     }
@@ -22,6 +22,7 @@ export const fetchBlog = async (id: string) => {
   try {
     const response = await fetch(url, {
       method: "GET",
+      mode: "cors",
     });
 
     if (response.ok) {
@@ -39,6 +40,7 @@ export const createPost = async (data: object) => {
   try {
     const response = await fetch(url, {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -81,6 +83,7 @@ export const deletePost = async (postId: string) => {
   try {
     const response = await fetch(url, {
       method: "DELETE",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -94,5 +97,40 @@ export const deletePost = async (postId: string) => {
     console.log("Post delete successfully:", result);
   } catch (error) {
     console.error("Failed to delete post:", error);
+  }
+};
+
+// Categories
+export const fetchGames = async (url) => {
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+    });
+
+    if (response.ok) {
+      console.log("Promise resolved and HTTP status is successful" + response);
+      return response;
+    } else {
+      console.error("Promise resolved but HTTP status failed");
+    }
+  } catch (e) {
+    console.error(e);
+  }
+};
+export const fetchUserById = async (postId) => {
+  try {
+    const url = `https://blog-api-backend-production-6489.up.railway.app/api/user/${postId}`;
+    const response = await fetch(url, {
+      method: "GET",
+    });
+
+    if (response.ok) {
+      console.log("Promise resolved and HTTP status is successful" + response);
+      return response.json();
+    } else {
+      console.error("Promise resolved but HTTP status failed");
+    }
+  } catch (e) {
+    console.error(e);
   }
 };
