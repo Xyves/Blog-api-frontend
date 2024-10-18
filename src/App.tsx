@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Science from "./pages/Categories/Science";
 import Games from "./pages/Categories/Games";
 import Tech from "./pages/Categories/Tech";
+import PostsAdmin from "./pages/Admin/Posts";
 export const App = () => {
   return (
     <Routes>
@@ -21,6 +22,7 @@ export const App = () => {
         <Route path="/tech" element={<Tech />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin" element={<PostsAdmin />} />
         <Route path="*" element={<Error />} />
       </Route>
     </Routes>
