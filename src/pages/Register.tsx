@@ -1,11 +1,7 @@
-import React from "react";
-
+import { HandleRegisterSubmit } from "@/api/Auth";
 export default function Register() {
   return (
-    <form
-      action="https://blog-api-backend-production-6489.up.railway.app/api/signup/"
-      method="post"
-    >
+    <form onSubmit={HandleRegisterSubmit} method="post">
       <label htmlFor="nickname">Username</label>
       <input type="text" name="nickname" id="nickname" required />
 
