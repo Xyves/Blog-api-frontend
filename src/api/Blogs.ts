@@ -1,11 +1,8 @@
-export const fetchBlogs = async () => {
+export const fetchBlogs = async (url) => {
   try {
-    const response = await fetch(
-      "https://blog-api-backend-production-6489.up.railway.app/api/posts",
-      {
-        mode: "cors",
-      },
-    );
+    const response = await fetch(url, {
+      mode: "cors",
+    });
     if (response.ok) {
       const json = response.json();
       console.log("Promise resolved and HTTP status is successful");
@@ -17,17 +14,16 @@ export const fetchBlogs = async () => {
     console.error(e);
   }
 };
-export const fetchBlog = async (id: string) => {
-  const url = `https://blog-api-backend-production-6489.up.railway.app/api/posts/${id}`;
+export const fetchBlog = async (url: string) => {
   try {
     const response = await fetch(url, {
-      method: "GET",
       mode: "cors",
     });
 
     if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful" + response);
-      return response;
+      const json = response.json();
+      console.log("Promise resolved and HTTP status is successful");
+      return json;
     } else {
       console.error("Promise resolved but HTTP status failed");
     }
