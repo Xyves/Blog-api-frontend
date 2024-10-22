@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <>
@@ -13,9 +14,11 @@ export const Home = () => {
                 Looking for fresh ideas or a quick, inspiring read? Our blog is
                 filled with content to entertain and inform.
               </h1>
-              <button className="btn-primary btn  mt-5 w-64">
-                <a href="/blogs">Start Reading</a>
-              </button>
+              <Link to={"/blogs"}>
+                <button className="btn-primary btn  mt-5 w-64">
+                  Start Reading
+                </button>
+              </Link>
               <p className="py-5"></p>
             </div>
           </div>
