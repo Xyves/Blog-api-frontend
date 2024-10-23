@@ -6,7 +6,7 @@ export default function Tech() {
   const [blogPosts, setBlogs] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      const url = "blog-api-backend-production-6489.up.railway.app/api/games";
+      const url = "blog-api-backend-production-6489.up.railway.app/api/tech";
       const posts = await fetchBlogs(url);
       if (posts) {
         setBlogs(posts);

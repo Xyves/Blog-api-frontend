@@ -3,12 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body > #root {
-  height: 100%;
-}
-body {
-  height: 100%;
-}
 body {
   font-family: "Work Sans", "Space Grotesk", "Roboto";
 }
