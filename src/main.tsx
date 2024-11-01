@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { App } from "./App.tsx";
 import "./index.css";
@@ -10,8 +10,8 @@ export const UserContext = createContext<{
   user: { nickname: string };
   setNewUser: (newUser: { nickname: string }) => void;
 }>({
-  user: { nickname: "" }, // default or placeholder nickname
-  setNewUser: () => {}, // no-op function as a default
+  user: { nickname: "" }, 
+  setNewUser: () => {}, 
 });
 
 function Main() {
@@ -23,7 +23,6 @@ function Main() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // Replace fetchUserProfile with your actual function
       fetchUserProfile().then((userData) => {
         if (userData) {
           setUser(userData);
