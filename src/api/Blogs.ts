@@ -16,9 +16,7 @@ export const fetchBlogs = async (url) => {
 };
 export const fetchBlog = async (url: string) => {
   try {
-    const response = await fetch(url, {
-      mode: "cors",
-    });
+    const response = await fetch(url, { mode: "cors" });
 
     if (response.ok) {
       const json = response.json();

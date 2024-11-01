@@ -1,7 +1,6 @@
 import "primeicons/primeicons.css";
 
 export default function Comment({ comment }) {
-  console.log(comment);
   const createdDate = new Date(comment.created);
   const formattedDate = createdDate.toLocaleString("en-GB");
   return (

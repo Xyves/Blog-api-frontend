@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { HandleLoginSubmit } from "@/api/Auth";
+import { fetchUserProfile, HandleLoginSubmit } from "@/api/Auth";
+import { UserContext } from "@/main";
 export default function Login({ onClose }) {
   const ref = useRef();
+  const { setNewUser } = useContext(UserContext);
 
   useEffect(() => {
     // Function to detect click outside
@@ -21,6 +23,18 @@ export default function Login({ onClose }) {
     };
   }, [onClose]);
 
+  const handleSubmit = async (e) => {
+    const tokenData = await HandleLoginSubmit(e);
+    console.log(tokenData);
+    if (tokenData) {
+      const userData = await fetchUserProfile();
+      console.log(userData);
+      setNewUser(userData);
+      // window.location.href = "/";
+    } else {
+      console.error("Failed to login.");
+    }
+  };
   return (
     <div
       className="modal-overlay fixed  inset-0 left-1/2 top-1/2 z-[1000] w-1/3 -translate-x-1/2  -translate-y-1/2  bg-[#232428]  backdrop-blur-md"
@@ -36,11 +50,7 @@ export default function Login({ onClose }) {
         </button>
       </div>
       <div className="middle mt-8 px-5">
-        <form
-          onSubmit={HandleLoginSubmit}
-          method="post"
-          className="flex flex-col"
-        >
+        <form onSubmit={handleSubmit} method="post" className="flex flex-col">
           <label htmlFor="" className=" uppercase text-gray-50">
             Your username
           </label>
