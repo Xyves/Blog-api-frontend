@@ -1,11 +1,39 @@
-import React from "react";
+import { createComment } from "@/api/Comments";
+import { UserContext } from "@/main";
+import React, { useContext } from "react";
+export default function CreateComment({ postId, onCommentCreated }) {
+  const { user } = useContext(UserContext);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const message = formData.get("message");
+    const userId = user ? user.id : null;
 
-export default function CreateComment({ user }) {
+    if (!userId || !message) {
+      console.error("User ID or message is invalid");
+      return;
+    }
+    try {
+      const commentData = await createComment(postId, userId, message);
+      onCommentCreated();
+      console.log("Comment created successfully:", commentData);
+
+      e.target.reset();
+    } catch (error) {
+      console.error("Error creating comment:", error);
+    }
+  };
   return (
-    <div>
-      <form action="">
-        <textarea name="" id="" cols="30"></textarea>
-        <button className="uppercase">post comment</button>
+    <div className="flex flex-col">
+      <form onSubmit={handleSubmit}>
+        <textarea
+          name="message"
+          id=""
+          cols="20"
+          rows="5"
+          className="my-5 w-full"
+        ></textarea>
+        <button className="w-full uppercase">post comment</button>
       </form>
     </div>
   );

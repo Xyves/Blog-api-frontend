@@ -3,8 +3,7 @@ import { fetchDbComments, fetchUserByCommentId } from "@/api/Comments";
 import { fetchUserById } from "@/api/Blogs";
 import Comment from "./Comment";
 const MemoizedComment = React.memo(Comment);
-export default function CommentList({ postId }) {
-  console.log("Here list");
+export default function CommentList({ postId, refreshTrigger }) {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const setComments = (blogs: any) => {
@@ -12,7 +11,6 @@ export default function CommentList({ postId }) {
     console.log(commentList);
   };
 
-  // 14 posts fetch
   useEffect(() => {
     setIsLoading(true);
     const fetchComments = async () => {
@@ -39,7 +37,7 @@ export default function CommentList({ postId }) {
       }
     };
     fetchComments();
-  }, [postId]);
+  }, [postId, refreshTrigger]);
   return (
     <>
       {isLoading ? (
