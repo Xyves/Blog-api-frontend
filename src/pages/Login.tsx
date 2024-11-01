@@ -1,11 +1,24 @@
-import React from "react";
-
+import { HandleLoginSubmit } from "@/api/Auth";
+import { UserContext } from "@/main";
+import React, { useContext } from "react";
 export default function Login() {
+  const { setNewUser, user } = useContext(UserContext);
+
+  const handleSubmit = async (e) => {
+    const userData = await HandleLoginSubmit(e);
+    if (userData) {
+      setNewUser(userData.nickname);
+      console.log(user);
+      window.location.href = "/";
+    } else {
+      console.error("Failed to login.");
+    }
+  };
   return (
     <div className="flex flex-col justify-center">
       <section className="mx-auto    bg-red-100">
         <form
-          action="https://blog-api-backend-production-6489.up.railway.app/api/login/"
+          onSubmit={handleSubmit}
           method="post"
           className="w-64 bg-yellow-300"
         >
