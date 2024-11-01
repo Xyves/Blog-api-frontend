@@ -3,7 +3,6 @@ import { useContext } from "react";
 
 export const HandleLoginSubmit = async (e) => {
   e.preventDefault();
-  const { user, setNewUser } = useContext(UserContext);
 
   const formData = new FormData(e.target);
   const nickname = formData.get("nickname");
@@ -18,16 +17,17 @@ export const HandleLoginSubmit = async (e) => {
       },
     );
     const data = await response.json();
+    console.log(data);
     if (response.ok) {
       localStorage.setItem("token", data.token);
-      setNewUser(data);
-      console.log(user);
-      window.location.href = "/";
+      return data;
     } else {
       console.error(data.message || "Login failed");
+      return null;
     }
   } catch (err) {
     console.error("An error occurred:", err);
+    return null;
   }
 };
 export const HandleRegisterSubmit = async (e) => {
@@ -85,14 +85,33 @@ export const getUserIdByNickname = async (nickname) => {
 };
 export const fetchUserProfile = async () => {
   const token = localStorage.getItem("token");
-  console.log(token);
-  const response = await fetch(
-    "https://blog-api-backend-production-6489.up.railway.app/api/user/me",
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
+  if (!token) {
+    console.error("No token found");
+    return null; // Return early if no token is found
+  }
+
+  try {
+    const response = await fetch(
+      "https://blog-api-backend-production-6489.up.railway.app/api/user/me",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    },
-  );
-  return response;
+    );
+
+    if (!response.ok) {
+      // Handle HTTP errors
+      const errorText = await response.text();
+      console.error("Failed to fetch profile:", errorText);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log("User data:", data);
+    return data;
+  } catch (error) {
+    console.error("An error occurred:", error);
+    return null;
+  }
 };
