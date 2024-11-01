@@ -9,7 +9,6 @@ export default function PostComments() {
     console.log(commentsList);
   };
   const { postId } = useParams();
-  // 14 posts fetch
   useEffect(() => {
     const fetchComments = async () => {
       const url = `https://blog-api-backend-production-6489.up.railway.app/api/${postId}/comments`;

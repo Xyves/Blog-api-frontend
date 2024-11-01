@@ -3,12 +3,15 @@ import "primeicons/primeicons.css";
 import { useState } from "react";
 import LoginModal from "@/components/Blog/LoginModal";
 import { UserContext } from "@/main";
+import { Link } from "react-router-dom";
 export const LayoutHeader: FC = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark",
   );
   const [showLogin, setShowLogin] = useState(false);
   const { user, setNewUser } = useContext(UserContext);
+
+  console.log(user);
   const handleToggle = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "emerald" : "dark"));
   };
@@ -26,7 +29,7 @@ export const LayoutHeader: FC = () => {
     <>
       <header className="mx-auto w-full bg-[#232428]">
         <nav className=" navbar mx-auto  flex h-14 w-3/4  justify-evenly   text-white">
-          <a href="/">
+          <Link to={"/"}>
             <span
               className={`
               font-helvetica ml-5 text-3xl font-bold 
@@ -34,7 +37,7 @@ export const LayoutHeader: FC = () => {
             >
               Bold Horizons
             </span>
-          </a>
+          </Link>
           <section className="navbar-end mr-5 flex w-1/3 items-center   justify-end  ">
             <label className="swap swap-rotate">
               <input
@@ -58,7 +61,7 @@ export const LayoutHeader: FC = () => {
               className="mx-3 uppercase hover:text-white"
               onClick={toggleModal}
             >
-              {user ? <p>sign in</p> : <a href="/logout">logout</a>}
+              {user ? <a href="/logout">logout</a> : <p>sign in</p>}
             </button>
           </section>
         </nav>
