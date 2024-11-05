@@ -24,15 +24,14 @@ export default function Login({ onClose }) {
   }, [onClose]);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const tokenData = await HandleLoginSubmit(e);
-    console.log(tokenData);
     if (tokenData) {
       const userData = await fetchUserProfile();
-      console.log(userData);
       setNewUser(userData);
-      // window.location.href = "/";
+      onClose();
     } else {
-      console.error("Failed to login.");
+      alert("Failed to login.");
     }
   };
   return (
@@ -41,7 +40,7 @@ export default function Login({ onClose }) {
       ref={ref}
     >
       <div className="top flex w-full items-center bg-[#1c1e1f] p-5 ">
-        <p className="">SIGN IN</p>
+        <p className="text-gray-200">SIGN IN</p>
         <button
           className="close-btn absolute right-[10px] top-[10px] ml-auto
             cursor-pointer border-none text-lg"
@@ -51,26 +50,28 @@ export default function Login({ onClose }) {
       </div>
       <div className="middle mt-8 px-5">
         <form onSubmit={handleSubmit} method="post" className="flex flex-col">
-          <label htmlFor="" className=" uppercase text-gray-50">
+          <label htmlFor="" className="uppercase text-gray-50">
             Your username
           </label>
           <input type="text" className="mb-5 p-3" name="nickname" />
-          <label htmlFor="" className=" uppercase text-gray-50">
+          <label htmlFor="" className="uppercase text-gray-50 ">
             password
           </label>
-          <input type="text" className=" p-3" name="password" />
+          <input type="password" className="p-3" name="password" />
           <p className="text-red  mb-7 flex text-orange-500">
             Forgot your password?
           </p>
-          <button type="submit" className="ml-auto">
+          <button type="submit" className="ml-auto text-gray-100">
             LOG IN
           </button>
         </form>
 
-        <p className=" items-end">
+        <p className=" items-end text-gray-50">
           Don't have an account?
           <span className="text-orange-600 underline">
-            <Link to={"/register"}>Register now</Link>
+            <Link to={"/register"} onClick={onClose}>
+              Register now
+            </Link>
           </span>
         </p>
       </div>
