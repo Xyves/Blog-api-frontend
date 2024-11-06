@@ -1,5 +1,5 @@
 import { fetchBlogs } from "@/api/Blogs";
-import BlogList from "@/Admin/components/Posts";
+import BlogList from "@/pages/Admin/components/Posts";
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "@/main";

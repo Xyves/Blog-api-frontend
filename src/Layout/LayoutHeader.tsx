@@ -1,30 +1,49 @@
 import { FC, useContext, useEffect } from "react";
 import "primeicons/primeicons.css";
 import { useState } from "react";
-import LoginModal from "@/components/Blog/LoginModal";
+import LoginModal from "@/components/LoginModal";
 import { UserContext } from "@/main";
 import { Link } from "react-router-dom";
 export const LayoutHeader: FC = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark",
   );
+
   const [showLogin, setShowLogin] = useState(false);
+
   const { user, setNewUser } = useContext(UserContext);
 
-  console.log(user);
   const handleToggle = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "emerald" : "dark"));
   };
+
   const toggleModal = () => {
     setShowLogin(!showLogin);
     console.log(showLogin);
   };
+
+  const handleLogout = () => {
+    fetch("/logout", { method: "GET" })
+      .then((response) => {
+        if (response.ok) {
+          localStorage.removeItem("token");
+          setNewUser(null);
+        } else {
+          throw new Error("Logout failed");
+        }
+      })
+      .catch((err) => {
+        console.error("Logout error:", err);
+      });
+  };
+
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html")?.setAttribute("data-theme", localTheme);
     console.log(`Theme updated to: ${theme}`);
   }, [theme]);
+
   return (
     <>
       <header className="mx-auto w-full bg-[#232428]">
@@ -59,9 +78,9 @@ export const LayoutHeader: FC = () => {
 
             <button
               className="mx-3 uppercase hover:text-white"
-              onClick={toggleModal}
+              onClick={user ? handleLogout : toggleModal}
             >
-              {user ? <a href="/logout">logout</a> : <p>sign in</p>}
+              {user ? "Logout" : "Sign in"}
             </button>
           </section>
         </nav>

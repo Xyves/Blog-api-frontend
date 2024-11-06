@@ -7,7 +7,6 @@ export const Blogs = () => {
   const [isLoading, setIsLoading] = useState(false);
   const setBlogs = (blogs: any) => {
     setBlogList(blogs);
-    console.log(blogList);
   };
 
   // 14 posts fetch
@@ -21,18 +20,15 @@ export const Blogs = () => {
       const posts = await fetchBlogs(url);
       console.timeEnd("data-fetch");
       if (posts) {
-        console.log(posts);
         const data = await Promise.all(
           posts.map(async (post) => {
             const userResponse = await fetchUserById(post.userId);
-            console.log("Went throught");
             return {
               ...post,
               author: userResponse.nickname,
             };
           }),
         );
-        console.log(data);
         setBlogs(data);
         setIsLoading(false);
       }

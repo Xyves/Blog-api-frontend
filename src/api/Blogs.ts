@@ -5,7 +5,6 @@ export const fetchBlogs = async (url) => {
     });
     if (response.ok) {
       const json = response.json();
-      console.log("Promise resolved and HTTP status is successful");
       return json;
     } else {
       console.error("Promise resolved but HTTP status failed");
@@ -14,13 +13,13 @@ export const fetchBlogs = async (url) => {
     console.error(e);
   }
 };
+
 export const fetchBlog = async (url: string) => {
   try {
     const response = await fetch(url, { mode: "cors" });
 
     if (response.ok) {
       const json = response.json();
-      console.log("Promise resolved and HTTP status is successful");
       return json;
     } else {
       console.error("Promise resolved but HTTP status failed");
@@ -29,6 +28,7 @@ export const fetchBlog = async (url: string) => {
     console.error(e);
   }
 };
+
 export const createPost = async (data: object) => {
   const url = `https://blog-api-backend-production-6489.up.railway.app/api/posts/`;
   try {
@@ -45,12 +45,12 @@ export const createPost = async (data: object) => {
       throw new Error(`Error: ${response.status}`);
     }
 
-    const result = await response.json();
-    console.log("Post created successfully:", result);
+    return response.json();
   } catch (error) {
     console.error("Failed to create post:", error);
   }
 };
+
 export const updatePost = async (postId: string, data: object) => {
   const url = `https://blog-api-backend-production-6489.up.railway.app/api/posts/${postId}`;
   try {
@@ -65,13 +65,12 @@ export const updatePost = async (postId: string, data: object) => {
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
-
-    const result = await response.json();
-    console.log("Post updated successfully:", result);
+    return response.json();
   } catch (error) {
     console.error("Failed to update post:", error);
   }
 };
+
 export const deletePost = async (postId: string) => {
   const url = `https://blog-api-backend-production-6489.up.railway.app/api/posts/${postId}`;
   try {
@@ -87,30 +86,12 @@ export const deletePost = async (postId: string) => {
       throw new Error(`Error: ${response.status}`);
     }
 
-    const result = await response.json();
-    console.log("Post delete successfully:", result);
+    return response.json();
   } catch (error) {
     console.error("Failed to delete post:", error);
   }
 };
 
-// Categories
-export const fetchGames = async (url) => {
-  try {
-    const response = await fetch(url, {
-      method: "GET",
-    });
-
-    if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful" + response);
-      return response;
-    } else {
-      console.error("Promise resolved but HTTP status failed");
-    }
-  } catch (e) {
-    console.error(e);
-  }
-};
 export const fetchUserById = async (postId) => {
   try {
     const url = `https://blog-api-backend-production-6489.up.railway.app/api/user/${postId}`;

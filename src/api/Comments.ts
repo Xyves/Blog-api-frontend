@@ -2,8 +2,7 @@ export const fetchDbComments = async (url) => {
   try {
     const response = await fetch(url, {});
     if (response.ok) {
-      const json = response.json();
-      console.log("Promise resolved and HTTP status is successful");
+      const json = await response.json();
       return json;
     } else {
       console.error("Promise resolved but HTTP status failed");
@@ -22,7 +21,6 @@ export const fetchDbComment = async () => {
     );
 
     if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful" + response);
       return response;
     } else {
       console.error("Promise resolved but HTTP status failed");
@@ -32,7 +30,6 @@ export const fetchDbComment = async () => {
   }
 };
 export const createComment = async (postId, userId, message) => {
-  console.log(postId, userId, message);
   const token = localStorage.getItem("token");
   try {
     const response = await fetch(
@@ -48,7 +45,6 @@ export const createComment = async (postId, userId, message) => {
     );
 
     if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful:", response);
       return response.json();
     } else {
       const errorText = await response.text();
@@ -77,8 +73,7 @@ export const updateComment = async (commentId: string, data: object) => {
       throw new Error(`Error: ${response.status}`);
     }
 
-    const result = await response.json();
-    console.log("Comment updated successfully:", result);
+    return response.json();
   } catch (error) {
     console.error("Failed to update post:", error);
   }
@@ -97,8 +92,7 @@ export const deleteComment = async (commentId: string) => {
       throw new Error(`Error: ${response.status}`);
     }
 
-    const result = await response.json();
-    console.log("Comment deleted successfully:", result);
+    return response.json();
   } catch (error) {
     console.error("Failed to delete post:", error);
   }
@@ -110,7 +104,6 @@ export const fetchUserByCommentId = async (url) => {
     });
 
     if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful" + response);
       return response.json();
     } else {
       console.error("Promise resolved but HTTP status failed");

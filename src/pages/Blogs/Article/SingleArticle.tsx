@@ -1,9 +1,9 @@
-import CommentList from "../../components/Blog/CommentList";
-import { fetchBlog, fetchUserById } from "../../api/Blogs";
+import CommentList from "./CommentList";
+import { fetchBlog, fetchUserById } from "../../../api/Blogs";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "primeicons/primeicons.css";
-import CreateComment from "@/components/Blog/CreateComment";
+import CreateComment from "@/pages/Blogs/Article/CreateComment";
 import { fetchUserProfile } from "@/api/Auth";
 import { UserContext } from "@/main";
 
@@ -20,19 +20,16 @@ export const Blog = () => {
   const handlePost = (newPost) => {
     setPost(newPost);
   };
+
   useEffect(() => {
     const fetchBlogPost = async () => {
       setIsLoading(true);
-      console.log(user);
       try {
         const url = `https://blog-api-backend-production-6489.up.railway.app/api/posts/${blogId}`;
         const newPost = await fetchBlog(url);
         if (newPost) {
-          console.log(newPost);
           const userResponse = await fetchUserById(newPost.userId);
           if (userResponse) {
-            console.log("Went through");
-
             const fullPost = {
               ...newPost,
               author: userResponse.nickname, // Add userName to the post
@@ -46,21 +43,18 @@ export const Blog = () => {
         setIsLoading(false);
       }
     };
+
     const fetchUserIfLoggedIn = async () => {
       try {
         const token = localStorage.getItem("token");
         if (token) {
           const userProfile = await fetchUserProfile();
-          console.log(userProfile);
           if (userProfile) {
             setNewUser(userProfile);
           } else {
             setNewUser(null);
-
-            console.log("No user profile received. Token might be invalid.");
           }
         }
-        console.log(user);
       } catch (error) {
         console.error("Error fetching user profile:", error.message);
       }
@@ -68,6 +62,7 @@ export const Blog = () => {
     fetchBlogPost();
     fetchUserIfLoggedIn();
   }, []);
+
   return (
     <main className="mx-auto min-h-full flex-1">
       <title>{post.title}</title>
@@ -111,7 +106,7 @@ export const Blog = () => {
                 id="comments-title"
               >
                 <div className="flex flex-col ">
-                  <div className="flex border-b-2">
+                  <div className="flex items-center justify-center border-b-2">
                     <i
                       className="pi pi-comment"
                       style={{ fontSize: "1.5rem" }}

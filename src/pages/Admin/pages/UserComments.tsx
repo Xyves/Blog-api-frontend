@@ -1,5 +1,5 @@
 import { fetchBlogs } from "@/api/Blogs";
-import Posts from "@/Admin/components/Posts";
+import Posts from "@/pages/Admin/components/Posts";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 export default function PostComments() {

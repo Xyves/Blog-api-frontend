@@ -7,11 +7,11 @@ import "./index.css";
 import { fetchUserProfile } from "./api/Auth.ts";
 
 export const UserContext = createContext<{
-  user: { nickname: string };
+  user: { nickname: string; role: string; id: string };
   setNewUser: (newUser: { nickname: string }) => void;
 }>({
-  user: { nickname: "" }, 
-  setNewUser: () => {}, 
+  user: { nickname: "" },
+  setNewUser: () => {},
 });
 
 function Main() {

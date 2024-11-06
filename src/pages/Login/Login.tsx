@@ -8,7 +8,6 @@ export default function Login() {
     const userData = await HandleLoginSubmit(e);
     if (userData) {
       setNewUser(userData.nickname);
-      console.log(user);
       window.location.href = "/";
     } else {
       console.error("Failed to login.");

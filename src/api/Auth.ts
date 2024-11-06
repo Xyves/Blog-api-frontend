@@ -17,7 +17,6 @@ export const HandleLoginSubmit = async (e) => {
       },
     );
     const data = await response.json();
-    console.log(data);
     if (response.ok) {
       localStorage.setItem("token", data.token);
       return data;
@@ -51,8 +50,7 @@ export const HandleRegisterSubmit = async (e) => {
     );
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem("token", data.token);
-      window.location.href = "/";
+      window.location.href = "/login";
     } else {
       console.error(data.message || "Login failed");
     }
@@ -60,7 +58,7 @@ export const HandleRegisterSubmit = async (e) => {
     console.error("An error occurred:", error);
   }
 };
-export const getUserIdByNickname = async (nickname) => {
+export const getUserIdByNickname = async (nickname: String) => {
   try {
     const response = await fetch(
       "https://blog-api-backend-production-6489.up.railway.app/api/signup/",
@@ -87,7 +85,7 @@ export const fetchUserProfile = async () => {
   const token = localStorage.getItem("token");
   if (!token) {
     console.error("No token found");
-    return null; // Return early if no token is found
+    return null;
   }
 
   try {
@@ -108,7 +106,6 @@ export const fetchUserProfile = async () => {
     }
 
     const data = await response.json();
-    console.log("User data:", data);
     return data;
   } catch (error) {
     console.error("An error occurred:", error);

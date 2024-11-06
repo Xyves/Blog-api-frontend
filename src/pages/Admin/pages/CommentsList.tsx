@@ -1,6 +1,6 @@
 import { fetchBlogs, fetchUserById } from "@/api/Blogs";
 import { fetchDbComments } from "@/api/Comments";
-import CommentList from "@/Admin/components/Comment";
+import CommentList from "@/pages/Admin/components/Comment";
 import { useContext, useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { UserContext } from "@/main";
