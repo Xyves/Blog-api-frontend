@@ -20,7 +20,6 @@ export const Blog = () => {
   const handlePost = (newPost) => {
     setPost(newPost);
   };
-
   useEffect(() => {
     const fetchBlogPost = async () => {
       setIsLoading(true);

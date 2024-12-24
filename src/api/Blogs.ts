@@ -1,4 +1,4 @@
-export const fetchBlogs = async (url) => {
+export const fetchBlogs = async (url: string) => {
   try {
     const response = await fetch(url, {
       mode: "cors",
@@ -100,7 +100,7 @@ export const fetchUserById = async (postId) => {
     });
 
     if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful" + response);
+      console.log("Promise resolved and HTTP status is successful"), response;
       return response.json();
     } else {
       console.error("Promise resolved but HTTP status failed");

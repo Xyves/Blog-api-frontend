@@ -4,7 +4,7 @@ import { useContext } from "react";
 export default function Login() {
   const { setNewUser } = useContext(UserContext);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: MouseEvent) => {
     const userData = await HandleLoginSubmit(e);
     if (userData) {
       setNewUser(userData.nickname);

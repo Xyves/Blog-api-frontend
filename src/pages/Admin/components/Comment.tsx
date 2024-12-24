@@ -1,7 +1,4 @@
-import { fetchDbComments } from "@/api/Comments";
-import { UserContext } from "@/main";
-import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+
 
 export default function Comments({ comment }) {
 

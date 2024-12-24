@@ -1,7 +1,4 @@
-import { UserContext } from "@/main";
-import { useContext } from "react";
-
-export const HandleLoginSubmit = async (e) => {
+export const HandleLoginSubmit = async (e: any) => {
   e.preventDefault();
 
   const formData = new FormData(e.target);
@@ -29,7 +26,7 @@ export const HandleLoginSubmit = async (e) => {
     return null;
   }
 };
-export const HandleRegisterSubmit = async (e) => {
+export const HandleRegisterSubmit = async (e: any) => {
   e.preventDefault();
 
   const formData = new FormData(e.target);
@@ -58,7 +55,7 @@ export const HandleRegisterSubmit = async (e) => {
     console.error("An error occurred:", error);
   }
 };
-export const getUserIdByNickname = async (nickname: String) => {
+export const getUserIdByNickname = async (nickname: string) => {
   try {
     const response = await fetch(
       "https://blog-api-backend-production-6489.up.railway.app/api/signup/",

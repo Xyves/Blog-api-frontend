@@ -1,4 +1,3 @@
-import { fetchBlogs, fetchUserById } from "@/api/Blogs";
 import { fetchDbComments } from "@/api/Comments";
 import CommentList from "@/pages/Admin/components/Comment";
 import { useContext, useEffect, useState } from "react";

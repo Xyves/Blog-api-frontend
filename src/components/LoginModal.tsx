@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { fetchUserProfile, HandleLoginSubmit } from "@/api/Auth";
 import { UserContext } from "@/main";
-export default function Login({ onClose }) {
+export default function Login(onClose: any) {
   const ref = useRef();
   const { setNewUser } = useContext(UserContext);
 
   useEffect(() => {
     // Function to detect click outside
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target)) {
         onClose();
       }
@@ -23,7 +23,7 @@ export default function Login({ onClose }) {
     };
   }, [onClose]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const tokenData = await HandleLoginSubmit(e);
     if (tokenData) {

@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchBlogs, fetchUserById } from "../../api/Blogs";
 
 import { PostList } from "./PostList";
@@ -25,7 +25,7 @@ export const Blogs = () => {
             const userResponse = await fetchUserById(post.userId);
             return {
               ...post,
-              author: userResponse.nickname,
+              author: userResponse ? userResponse.nickname : null,
             };
           }),
         );

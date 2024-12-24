@@ -1,4 +1,4 @@
-export const fetchDbComments = async (url) => {
+export const fetchDbComments = async (url: string) => {
   try {
     const response = await fetch(url, {});
     if (response.ok) {
@@ -11,7 +11,7 @@ export const fetchDbComments = async (url) => {
     console.error(e);
   }
 };
-export const fetchDbComment = async () => {
+export const fetchDbComment = async (commentId: string) => {
   try {
     const response = await fetch(
       `https://blog-api-backend-production-6489.up.railway.app/api/comments/${commentId}`,
@@ -29,7 +29,11 @@ export const fetchDbComment = async () => {
     console.error(e);
   }
 };
-export const createComment = async (postId, userId, message) => {
+export const createComment = async (
+  postId: string,
+  userId: string,
+  message: string,
+) => {
   const token = localStorage.getItem("token");
   try {
     const response = await fetch(
@@ -97,7 +101,7 @@ export const deleteComment = async (commentId: string) => {
     console.error("Failed to delete post:", error);
   }
 };
-export const fetchUserByCommentId = async (url) => {
+export const fetchUserByCommentId = async (url: string) => {
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -112,7 +116,7 @@ export const fetchUserByCommentId = async (url) => {
     console.error(e);
   }
 };
-export const HandleCommitSubmit = async (e) => {
+export const HandleCommitSubmit = async (e: string) => {
   e.preventDefault();
 
   const formData = new FormData(e.target);
