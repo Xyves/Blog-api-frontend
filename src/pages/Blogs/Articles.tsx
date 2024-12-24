@@ -12,7 +12,6 @@ export const Blogs = () => {
   // 14 posts fetch
   useEffect(() => {
     setIsLoading(true);
-    document.title = "Blogs";
     const fetchPosts = async () => {
       const url =
         "https://blog-api-backend-production-6489.up.railway.app/api/posts";
