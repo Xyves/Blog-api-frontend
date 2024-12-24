@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { fetchBlogs, fetchUserById } from "../../api/Blogs";
 
-import { PostList } from "../../components/Blog/PostList";
+import { PostList } from "./PostList";
 export const Blogs = () => {
   const [blogList, setBlogList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

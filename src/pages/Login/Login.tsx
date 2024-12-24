@@ -1,8 +1,8 @@
 import { HandleLoginSubmit } from "@/api/Auth";
 import { UserContext } from "@/main";
-import React, { useContext } from "react";
+import { useContext } from "react";
 export default function Login() {
-  const { setNewUser, user } = useContext(UserContext);
+  const { setNewUser } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     const userData = await HandleLoginSubmit(e);

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Post({ post, variant }) {
@@ -35,28 +34,5 @@ export default function Post({ post, variant }) {
         </p>
       </section>
     </article>
-  ) : //     <article className="col-span-12 grid grid-rows-12 border-2 border-blue-300 bg-[#383c3f]">
-  //       <figure className="row-span-4 border-2 border-red-600 bg-green-600">
-  //         <img alt="" />
-  //         <figcaption></figcaption>
-  //       </figure>
-  //       <Link to={`${post.id}`} className="">
-  //         <div className="title text-wrap text-md  row-span-3 border-2 border-blue-600 p-2 text-[#e4e4e4]">
-  //           <p className="break-all">{post.title}</p>
-  //         </div>
-  //         <div className="description row-span-3 border-2 border-red-600 p-2  text-sm text-[#d6d0c5]">
-  //           {post.content.split(" ").slice(0, 20).join(" ") + "..."}
-  //         </div>
-  //       </Link>
-  //       <div className="comments row-span-2 flex items-center justify-center border-2 border-gray-800 p-2 text-xs text-white">
-  //         <span>{post.author} - &nbsp;</span>
-  //         <span>{formattedDate} </span>
-  //         <p
-  //           className="pi pi-comment mx-1
-  // "
-  //         ></p>
-  //         <p>204</p>
-  //       </div>
-  //     </article>
-  null;
+  ) : null;
 }
