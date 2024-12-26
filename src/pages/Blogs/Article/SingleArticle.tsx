@@ -5,19 +5,18 @@ import { useParams } from "react-router-dom";
 import "primeicons/primeicons.css";
 import CreateComment from "@/pages/Blogs/Article/CreateComment";
 import { fetchUserProfile } from "@/api/Auth";
+import { PostInterface } from "@/interface.ts";
 import { UserContext } from "@/main";
-
 export const Blog = () => {
   const { user, setNewUser } = useContext(UserContext);
   const { blogId } = useParams();
-  const [post, setPost] = useState([]);
-  const createdDate = new Date(post.created);
+  const [post, setPost] = useState<PostInterface[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const formattedDate = createdDate.toLocaleString("en-GB");
+
   const [refreshComments, setRefreshComments] = useState(false);
   const triggerCommentRefresh = () => setRefreshComments((prev) => !prev);
-
-  const handlePost = (newPost) => {
+  console.log(post);
+  const handlePost = (newPost: PostInterface[]) => {
     setPost(newPost);
   };
   useEffect(() => {
@@ -29,14 +28,17 @@ export const Blog = () => {
         if (newPost) {
           const userResponse = await fetchUserById(newPost.userId);
           if (userResponse) {
+            const createdDate = new Date(newPost.created);
+            const formattedDate = createdDate.toLocaleString("en-GB");
             const fullPost = {
+              formattedDate: formattedDate,
               ...newPost,
-              author: userResponse.nickname, // Add userName to the post
+              author: userResponse.nickname,
             };
             handlePost(fullPost);
           }
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("An error occurred:", error.message);
       } finally {
         setIsLoading(false);
@@ -51,10 +53,11 @@ export const Blog = () => {
           if (userProfile) {
             setNewUser(userProfile);
           } else {
-            setNewUser(null);
+            // setNewUser(null);
+            return null;
           }
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching user profile:", error.message);
       }
     };
@@ -79,7 +82,7 @@ export const Blog = () => {
               <h1 className=" text-3xl text-gray-100">{post.title}</h1>
               <div className="metadata my-3">
                 <h2 className="text-orange-500">{post.author} </h2>
-                <span className="text-gray-300"> - {formattedDate}</span>
+                <span className="text-gray-300"> - {post.formattedDate}</span>
               </div>
             </div>
             <div className="image    w-96 bg-red-700">
