@@ -14,24 +14,31 @@ export default function Login() {
     }
   };
   return (
-    <div className="flex flex-col justify-center">
-      <section className="mx-auto    bg-red-100">
+    <div className="mt-20 flex flex-col justify-center rounded-lg">
+      <section className="mx-auto  rounded-lg  bg-red-100 ">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={(e: any) => handleSubmit(e)}
           method="post"
-          className="w-64 bg-yellow-300"
+          className="line flex w-64 flex-col justify-center rounded-lg bg-yellow-300 px-12 py-10 leading-7 [&>*]:text-black "
         >
-          <h1>Login</h1>
-          <label htmlFor="nickname " className="block">
+          <h1 className="mb-10 w-full  text-2xl font-bold">Login</h1>
+          <label htmlFor="nickname " className="mb-2 block font-semibold">
             nickname:
           </label>
-          <input type="text" name="nickname" />
-          <label htmlFor="password" className="block">
+          <input
+            type="text"
+            name="nickname"
+            className="line mb-10 bg-blue-200 leading-7 text-white placeholder:text-white"
+          />
+          <label htmlFor="password" className="mb-2 block font-semibold">
             password:
           </label>
-          <input type="text" name="password" />
+          <input type="password" name="password" className="bg-blue-200" />
           <br />
-          <button type="submit" className="block">
+          <button
+            type="submit"
+            className=" btn-primary block bg-[#003366] !text-white "
+          >
             Submit
           </button>
         </form>
