@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import { fetchDbComments } from "@/api/Comments";
 import { fetchUserById } from "@/api/Blogs";
 import Comment from "./Comment";
+import { CommentInterface } from "@/interface";
 const MemoizedComment = React.memo(Comment);
-export default function CommentList({ postId, refreshTrigger }) {
+export default function CommentList({
+  postId,
+  refreshTrigger,
+}: {
+  postId: string;
+  refreshTrigger: any;
+}) {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const setComments = (blogs: any) => {
@@ -18,7 +25,7 @@ export default function CommentList({ postId, refreshTrigger }) {
         const comments = await fetchDbComments(url);
         if (comments) {
           const commentsWithAuthors = await Promise.all(
-            comments.map(async (comment) => {
+            comments.map(async (comment: CommentInterface) => {
               const userResponse = await fetchUserById(comment.userId);
               return {
                 ...comment,
@@ -28,7 +35,7 @@ export default function CommentList({ postId, refreshTrigger }) {
           );
           setComments(commentsWithAuthors);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("An error occurred:", error.message);
       } finally {
         setIsLoading(false);
@@ -43,7 +50,7 @@ export default function CommentList({ postId, refreshTrigger }) {
           <p className="loading w-10"></p>
         </div>
       ) : commentList && commentList.length > 0 ? (
-        commentList.map((comment) => {
+        commentList.map((comment: CommentInterface) => {
           return <MemoizedComment comment={comment} key={comment.id} />;
         })
       ) : (

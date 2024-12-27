@@ -2,13 +2,13 @@ import { useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { fetchUserProfile, HandleLoginSubmit } from "@/api/Auth";
 import { UserContext } from "@/main";
-export default function Login(onClose: any) {
-  const ref = useRef();
+export default function Login({ onClose }: any) {
+  const ref = useRef<HTMLDivElement>(null);
   const { setNewUser } = useContext(UserContext);
 
   useEffect(() => {
     // Function to detect click outside
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: any) => {
       if (ref.current && !ref.current.contains(event.target)) {
         onClose();
       }

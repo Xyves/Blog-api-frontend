@@ -10,13 +10,20 @@ import { UserContext } from "@/main";
 export const Blog = () => {
   const { user, setNewUser } = useContext(UserContext);
   const { blogId } = useParams();
-  const [post, setPost] = useState<PostInterface[]>([]);
+  const [post, setPost] = useState<PostInterface>({
+    id: "",
+    title: "",
+    content: "",
+    created: "",
+    isPublished: false,
+    userId: "",
+    imageUrl: [],
+  });
   const [isLoading, setIsLoading] = useState(true);
 
   const [refreshComments, setRefreshComments] = useState(false);
   const triggerCommentRefresh = () => setRefreshComments((prev) => !prev);
-  console.log(post);
-  const handlePost = (newPost: PostInterface[]) => {
+  const handlePost = (newPost: PostInterface) => {
     setPost(newPost);
   };
   useEffect(() => {

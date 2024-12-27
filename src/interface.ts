@@ -5,14 +5,21 @@ export interface PostInterface {
   created: string;
   isPublished: boolean;
   userId: string;
-  imageUrl: [];
+  imageUrl: string[];
   author?: string;
+  formattedDate?: string;
 }
 export interface CommentInterface {
   author: string | null;
-  created: Date;
+  created: string;
   id: string;
   message: string;
   userId: string;
   postId: string;
+  isPublished?: boolean;
+}
+export interface UserInterface {
+  nickname: string | null;
+  role?: string | null;
+  id?: string | null;
 }

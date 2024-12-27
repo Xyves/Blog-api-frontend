@@ -49,7 +49,7 @@ export const HandleRegisterSubmit = async (e: any) => {
     if (response.ok) {
       window.location.href = "/login";
     } else {
-      console.error(data.message || "Login failed");
+      console.error(data.message || "Register failed");
     }
   } catch (error) {
     console.error("An error occurred:", error);

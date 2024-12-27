@@ -1,7 +1,6 @@
+import { CommentInterface } from "@/interface";
 
-
-export default function Comments({ comment }) {
-
+export default function Comments({ comment }: { comment: CommentInterface }) {
   return (
     <>
       <li>

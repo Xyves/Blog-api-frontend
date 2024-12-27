@@ -1,13 +1,11 @@
 import { fetchBlogs } from "@/api/Blogs";
 import BlogList from "@/pages/Admin/components/Posts";
-import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { UserContext } from "@/main";
-export default function PostsAdmin() {
-  const { user } = useContext(UserContext);
+import { PostInterface } from "@/interface.ts";
 
-  const [blogList, setBlogList] = useState([]);
-  const setBlogs = (blogs: any) => {
+import { useEffect, useState } from "react";
+export default function PostsAdmin() {
+  const [blogList, setBlogList] = useState<PostInterface[]>([]);
+  const setBlogs = (blogs: PostInterface[]) => {
     setBlogList(blogs);
   };
 
@@ -19,7 +17,6 @@ export default function PostsAdmin() {
       const posts = await fetchBlogs(url);
       if (posts) {
         setBlogs(posts);
-        console.log(posts);
       }
     };
     fetchPosts();

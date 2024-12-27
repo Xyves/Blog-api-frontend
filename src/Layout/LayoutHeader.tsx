@@ -5,9 +5,10 @@ import LoginModal from "@/components/LoginModal";
 import { UserContext } from "@/main";
 import { Link } from "react-router-dom";
 export const LayoutHeader: FC = () => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark",
-  );
+  const [theme, setTheme] = useState<string>(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme ? savedTheme : "dark"; // Fallback to 'dark' if no theme is found
+  });
 
   const [showLogin, setShowLogin] = useState(false);
 
@@ -19,7 +20,6 @@ export const LayoutHeader: FC = () => {
 
   const toggleModal = () => {
     setShowLogin(!showLogin);
-    console.log(showLogin);
   };
 
   const handleLogout = () => {
@@ -39,7 +39,7 @@ export const LayoutHeader: FC = () => {
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
+    const localTheme = localStorage.getItem("theme") as string;
     document.querySelector("html")?.setAttribute("data-theme", localTheme);
   }, [theme]);
 

@@ -15,12 +15,10 @@ export const Blogs = () => {
     const fetchPosts = async () => {
       const url =
         "https://blog-api-backend-production-6489.up.railway.app/api/posts";
-      console.time("data-fetch");
       const posts = await fetchBlogs(url);
-      console.timeEnd("data-fetch");
       if (posts) {
         const data = await Promise.all(
-          posts.map(async (post) => {
+          posts.map(async (post: { userId: string }) => {
             const userResponse = await fetchUserById(post.userId);
             return {
               ...post,

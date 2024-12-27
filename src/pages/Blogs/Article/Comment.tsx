@@ -1,6 +1,8 @@
 import "primeicons/primeicons.css";
+import { CommentInterface } from "@/interface.ts";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment }: { comment: CommentInterface }) {
+  (comment);
   const createdDate = new Date(comment.created);
   const formattedDate = createdDate.toLocaleString("en-GB");
   return (

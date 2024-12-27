@@ -116,10 +116,10 @@ export const fetchUserByCommentId = async (url: string) => {
     console.error(e);
   }
 };
-export const HandleCommitSubmit = async (e: string) => {
-  e.preventDefault();
+export const HandleCommitSubmit = async (event: any) => {
+  event.preventDefault();
 
-  const formData = new FormData(e.target);
+  const formData = new FormData(event.target);
   const nickname = formData.get("nickname");
   const message = formData.get("message");
   // const userId =

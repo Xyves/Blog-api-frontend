@@ -1,10 +1,6 @@
-import { UserContext } from "@/main";
-import React, { useContext, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-
-export default function Posts({ post }) {
- 
-
+import { Link } from "react-router-dom";
+import { PostInterface } from "@/interface";
+export default function Posts({ post }: { post: PostInterface }) {
   return (
     <li>
       <section className="border:2 mx-auto my-6  flex h-36 w-4/5  items-center justify-between  overflow-hidden border-black child:my-6 child:p-3">

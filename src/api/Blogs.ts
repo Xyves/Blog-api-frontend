@@ -92,7 +92,7 @@ export const deletePost = async (postId: string) => {
   }
 };
 
-export const fetchUserById = async (postId) => {
+export const fetchUserById = async (postId: string) => {
   try {
     const url = `https://blog-api-backend-production-6489.up.railway.app/api/user/${postId}`;
     const response = await fetch(url, {
@@ -100,7 +100,6 @@ export const fetchUserById = async (postId) => {
     });
 
     if (response.ok) {
-      console.log("Promise resolved and HTTP status is successful"), response;
       return response.json();
     } else {
       console.error("Promise resolved but HTTP status failed");

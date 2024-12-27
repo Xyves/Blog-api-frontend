@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import { PostInterface } from "@/interface.ts";
 
-export default function Post({ post, variant }) {
+export default function Post({
+  post,
+  variant,
+}: {
+  post: PostInterface;
+  variant: string;
+}) {
   const createdDate = new Date(post.created);
   const formattedDate = createdDate.toLocaleString("en-GB");
   return variant === "variant1" ? (

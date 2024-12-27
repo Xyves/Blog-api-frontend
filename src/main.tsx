@@ -1,23 +1,23 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
-
+import { UserInterface } from "./interface.ts";
 import { App } from "./App.tsx";
 import "./index.css";
 import { fetchUserProfile } from "./api/Auth.ts";
 
 export const UserContext = createContext<{
-  user: { nickname: string; role: string; id: string };
-  setNewUser: (newUser: { nickname: string }) => void;
+  user: UserInterface | null;
+  setNewUser: (newUser: UserInterface | null) => void;
 }>({
-  user: { nickname: "" },
-  setNewUser: () => {},
+  user: null,
+  setNewUser: () => undefined,
 });
 
 function Main() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<{ nickname: string } | null>(null);
 
-  const setNewUser = (newUser: { nickname: string }) => {
+  const setNewUser = (newUser: UserInterface | null | any) => {
     setUser(newUser);
   };
   useEffect(() => {

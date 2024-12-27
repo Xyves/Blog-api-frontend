@@ -1,12 +1,11 @@
 import { fetchBlogs } from "@/api/Blogs";
-import Posts from "@/pages/Admin/components/Posts";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { CommentInterface } from "@/interface";
 export default function PostComments() {
-  const [commentsList, setCommentsList] = useState([]);
-  const setComments = (comments: any) => {
+  const [commentsList, setCommentsList] = useState<CommentInterface[]>([]);
+  const setComments = (comments: CommentInterface[]) => {
     setCommentsList(comments);
-    console.log(commentsList);
   };
   const { userId } = useParams();
 
@@ -23,9 +22,9 @@ export default function PostComments() {
   });
   return (
     <main>
-      {commentsList.map((comment) => {
-        return <Posts comment={comment} variant={"blog"} />;
-      })}
+      {/* {commentsList.map((comment: CommentInterface) => { */}
+      {/* // return <Posts comment={comment} x="" />; */}
+      {/* // })} */}
     </main>
   );
 }
