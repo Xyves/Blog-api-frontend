@@ -20,6 +20,8 @@ export default function Register() {
             id="nickname"
             required
             className="bg-slate-800"
+            pattern="^[a-z\d]{3,20}$"
+            title="Nickname must only contain lowercase letters (a-z) and numbers (0-9), be 3-20 characters long, and have no spaces or special characters."
           />
         </div>
         <div className="labelWrap">
@@ -35,6 +37,8 @@ export default function Register() {
             id="password"
             required
             className="bg-slate-800"
+            pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
           />
         </div>
         <div className="labelWrap">
