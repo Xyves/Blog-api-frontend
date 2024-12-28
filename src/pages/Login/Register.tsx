@@ -1,7 +1,7 @@
 import { HandleRegisterSubmit } from "@/api/Auth";
 export default function Register() {
   return (
-    <section className="my-auto flex h-80 flex-col items-center rounded-sm">
+    <section className="my-auto mt-24 flex h-80 flex-col items-center rounded-sm">
       <form
         onSubmit={HandleRegisterSubmit}
         method="post"
