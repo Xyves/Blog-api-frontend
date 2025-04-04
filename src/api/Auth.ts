@@ -89,6 +89,7 @@ export const fetchUserProfile = async () => {
     const response = await fetch(
       "https://blog-api-backend-production-6489.up.railway.app/api/user/me",
       {
+        method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -97,17 +98,12 @@ export const fetchUserProfile = async () => {
       },
     );
 
-    if (!response.ok) {
-      // Handle HTTP errors
-      const errorText = await response.text();
-      console.error("Failed to fetch profile:", errorText);
-      return null;
-    }
+    if (response.status === 204) return null; // Handle empty response
+    if (!response.ok) throw new Error(`Server error: ${response.status}`);
 
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error("An error occurred:", error);
+    console.error("Error fetching profile:", error);
     return null;
   }
 };

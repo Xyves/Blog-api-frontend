@@ -23,13 +23,18 @@ function Main() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetchUserProfile().then((userData) => {
-        if (userData) {
-          setUser(userData);
-        }
-      });
+      fetchUserProfile()
+        .then((userData) => {
+          if (userData) {
+            setUser(userData);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user:", error);
+        });
     }
   }, []);
+
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setNewUser }}>
