@@ -83,17 +83,21 @@ export const Blog = () => {
         <div className="flex h-full flex-col  justify-center">
           <header
             id="top "
-            className="my-5 grid   grid-cols-2 bg-gray-700 p-10 lg:h-80 "
+            className="mb-5 mt-1 grid  grid-cols-2 bg-gray-700 p-10 lg:h-80 "
           >
             <div className="text   mx-auto flex w-1/2 flex-col  justify-between p-5">
               <h1 className=" text-3xl text-gray-100">{post.title}</h1>
               <div className="metadata my-3">
                 <h2 className="text-orange-500">{post.author} </h2>
-                <span className="text-gray-300"> - {post.formattedDate}</span>
+                <span className="text-gray-300"> {post.formattedDate}</span>
               </div>
             </div>
-            <div className="image    w-96 bg-red-700">
-              <img src={post.imageUrl[0]} alt="" className="h-full w-full" />
+            <div className="image    h-60 w-96 bg-red-700">
+              <img
+                src={post.imageUrl[0]}
+                alt="article image"
+                className="h-full w-full"
+              />
             </div>
           </header>
           <article

@@ -11,9 +11,7 @@ export const LayoutHeader: FC = () => {
   });
 
   const [showLogin, setShowLogin] = useState(false);
-
   const { user, setNewUser } = useContext(UserContext);
-
   const handleToggle = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "emerald" : "dark"));
   };

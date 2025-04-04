@@ -1,48 +1,59 @@
-import { HandleLoginSubmit } from "@/api/Auth";
+import { fetchUserProfile, HandleLoginSubmit } from "@/api/Auth";
 import { UserContext } from "@/main";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 export default function Login() {
   const { setNewUser } = useContext(UserContext);
 
-  const handleSubmit = async (e: MouseEvent) => {
-    const userData = await HandleLoginSubmit(e);
-    if (userData) {
-      setNewUser(userData.nickname);
-      window.location.href = "/";
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const tokenData = await HandleLoginSubmit(e);
+    if (tokenData) {
+      const userData = await fetchUserProfile();
+      setNewUser(userData);
     } else {
-      console.error("Failed to login.");
+      alert("Failed to login.");
     }
   };
   return (
-    <div className="mt-20 flex flex-col justify-center rounded-lg">
-      <section className="mx-auto  rounded-lg  bg-red-100 ">
-        <form
-          onSubmit={(e: any) => handleSubmit(e)}
-          method="post"
-          className="line flex w-64 flex-col justify-center rounded-lg bg-yellow-300 px-12 py-10 leading-7 [&>*]:text-black "
+    <div className="modal-overlay fixed  inset-0 left-1/2 top-1/2 z-[1000]  w-1/3  -translate-x-1/2  -translate-y-1/2  bg-[#232428] backdrop-blur-md">
+      <div className="top flex w-full items-center bg-[#1c1e1f] p-5 ">
+        <p className="text-gray-200">SIGN IN</p>
+        <button
+          className="close-btn absolute right-[10px] top-[10px] ml-auto
+              cursor-pointer border-none text-lg"
         >
-          <h1 className="mb-10 w-full  text-2xl font-bold">Login</h1>
-          <label htmlFor="nickname " className="mb-2 block font-semibold">
-            nickname:
+          X
+        </button>
+      </div>
+      <div className="middle mt-8  px-5">
+        <form onSubmit={handleSubmit} method="post" className="flex flex-col">
+          <label htmlFor="" className="uppercase text-gray-50">
+            Your username
           </label>
-          <input
-            type="text"
-            name="nickname"
-            className="line mb-10 bg-blue-200 leading-7 text-white placeholder:text-white"
-          />
-          <label htmlFor="password" className="mb-2 block font-semibold">
-            password:
+          <input type="text" className="mb-5 p-3" name="nickname" />
+          <label htmlFor="" className="uppercase text-gray-50 ">
+            password
           </label>
-          <input type="password" name="password" className="bg-blue-200" />
-          <br />
+          <input type="password" className="p-3" name="password" />
+          <p className="text-red  mb-7 flex text-orange-500">
+            Forgot your password?
+          </p>
           <button
             type="submit"
-            className=" btn-primary block bg-[#003366] !text-white "
+            className="ml-auto bg-orange-500 px-4 py-2 text-gray-100 active:bg-orange-600"
           >
-            Submit
+            LOG IN
           </button>
         </form>
-      </section>
+
+        <p className=" items-end text-gray-50">
+          Don't have an account? &nbsp;
+          <span className="text-orange-600 underline">
+            <Link to={"/register"}>Register now</Link>
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

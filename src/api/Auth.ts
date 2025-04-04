@@ -91,7 +91,9 @@ export const fetchUserProfile = async () => {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
+        credentials: "include",
       },
     );
 
