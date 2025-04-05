@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <>
-      <section>
+      <section className="w-full">
         <div className="hero flex min-h-[calc(100vh-64px)] justify-center bg-base-200">
-          <div className="hero-content flex-col lg:flex-row">
+          <div className="hero-content flex-col  md:flex-row">
             <img
               src="/images/hero.webp"
-              className="max-w-lg rounded-lg shadow-2xl"
+              className=" rounded-lg shadow-2xl sm:max-w-sm"
             />
-            <div className="mx-10   flex flex-col">
-              <h1 className="text-5xl font-bold">
+            <div className="   mx-10 flex flex-col">
+              <h1 className="font-bold sm:text-2xl md:text-3xl lg:text-5xl">
                 Looking for fresh ideas or a quick, inspiring read? Our blog is
                 filled with content to entertain and inform.
               </h1>

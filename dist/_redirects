@@ -1,0 +1,6 @@
+/*    /index.html   200
+
+/register  /index.html   200
+/login     /index.html   200
+/blogs     /index.html   200
+/blogs/*    /index.html  200

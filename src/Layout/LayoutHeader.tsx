@@ -43,18 +43,18 @@ export const LayoutHeader: FC = () => {
 
   return (
     <>
-      <header className="mx-auto w-full bg-[#232428]">
-        <nav className=" navbar mx-auto  flex h-14 w-3/4  justify-evenly   text-white">
+      <header className="mx-auto w-full  bg-[#232428]">
+        <nav className=" navbar mx-auto flex  h-14 justify-evenly text-white   sm:w-full   md:w-2/3   lg:w-3/4">
           <Link to={"/"}>
             <span
               className={`
-              font-helvetica ml-5 text-3xl font-bold 
+              font-helvetica sm:text-md  ml-5 font-bold  md:text-xl lg:text-3xl
             `}
             >
               Bold Horizons
             </span>
           </Link>
-          <section className="navbar-end mr-5 flex w-1/3 items-center   justify-end  ">
+          <section className="navbar-end  flex items-center justify-end   ">
             <label className="swap swap-rotate">
               <input
                 type="checkbox"
@@ -63,7 +63,7 @@ export const LayoutHeader: FC = () => {
               />
 
               <button
-                className="btn-ghost btn-circle btn"
+                className="btn-ghost btn-circle btn sm:mx-6 lg:ml-0"
                 onClick={handleToggle}
                 aria-label="theme"
               >
