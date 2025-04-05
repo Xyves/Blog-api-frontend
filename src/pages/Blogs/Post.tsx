@@ -11,8 +11,8 @@ export default function Post({
   const createdDate = new Date(post.created);
   const formattedDate = createdDate.toLocaleString("en-GB");
   return variant === "variant1" ? (
-    <article className="col-span-4  my-4 flex  h-full overflow-hidden rounded-lg border-2 bg-[#232428]">
-      <section className=" flex  h-full   w-full flex-col">
+    <article className="my-4 flex h-full overflow-hidden rounded-lg border-2 bg-[#232428]">
+      <section className="flex h-full w-full flex-col">
         <Link to={`${post.id}`} className="flex   w-full">
           <figure className=" h-40 w-full  bg-green-800">
             <img
