@@ -83,16 +83,16 @@ export const Blog = () => {
         <div className="flex h-full flex-col  justify-center">
           <header
             id="top "
-            className="mb-5 mt-1 grid  grid-cols-2 bg-gray-700 p-10 lg:h-80 "
+            className="mb-5 mt-1 bg-gray-700 p-10 sm:flex  sm:flex-col lg:grid lg:h-80 lg:grid-cols-2 "
           >
-            <div className="text   mx-auto flex w-1/2 flex-col  justify-between p-5">
+            <div className="text   mx-auto flex flex-col justify-between p-5 sm:w-full  md:w-full lg:w-1/2">
               <h1 className=" text-3xl text-gray-100">{post.title}</h1>
               <div className="metadata my-3">
                 <h2 className="text-orange-500">{post.author} </h2>
                 <span className="text-gray-300"> {post.formattedDate}</span>
               </div>
             </div>
-            <div className="image    h-60 w-96 bg-red-700">
+            <div className="image    h-60 bg-red-700 sm:w-full md:w-96">
               <img
                 src={post.imageUrl[0]}
                 alt="article image"
@@ -102,7 +102,7 @@ export const Blog = () => {
           </header>
           <article
             id="main-content"
-            className=" mx-auto flex w-3/5 items-center justify-center"
+            className=" mx-auto flex items-center justify-center sm:mx-12 sm:w-full lg:w-3/5"
           >
             <p className="text- text-center text-2xl leading-relaxed">
               {post.content}
