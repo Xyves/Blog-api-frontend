@@ -73,7 +73,7 @@ export const Blog = () => {
   }, []);
 
   return (
-    <main className="mx-auto min-h-full flex-1">
+    <main className=" flex min-h-full flex-1 justify-center">
       <title>{post.title}</title>
       {isLoading ? (
         <div className="flex min-h-screen  items-center justify-center">
@@ -92,7 +92,7 @@ export const Blog = () => {
                 <span className="text-gray-300"> {post.formattedDate}</span>
               </div>
             </div>
-            <div className="image    h-60 bg-red-700 sm:w-full md:w-96">
+            <div className="image h-60 bg-red-700 sm:w-full md:w-96">
               <img
                 src={post.imageUrl[0]}
                 alt="article image"
