@@ -85,7 +85,7 @@ export const Blog = () => {
             id="top "
             className="mb-5 mt-1 bg-gray-700 p-10 sm:flex  sm:flex-col lg:grid lg:h-80 lg:grid-cols-2 "
           >
-            <div className="text   mx-auto flex flex-col justify-between p-5 sm:w-full  md:w-full lg:w-1/2">
+            <div className=" mx-auto flex  justify-end   lg:w-3/5">
               <h1 className=" text-3xl text-gray-100">{post.title}</h1>
               <div className="metadata my-3">
                 <h2 className="text-orange-500">{post.author} </h2>
