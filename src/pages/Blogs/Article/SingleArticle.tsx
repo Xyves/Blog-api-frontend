@@ -102,7 +102,7 @@ export const Blog = () => {
           </header>
           <article
             id="main-content"
-            className=" mx-auto flex items-center justify-center sm:mx-12 sm:w-full lg:w-3/5"
+            className=" mx-auto flex items-center justify-center  sm:w-full lg:w-3/5"
           >
             <p className="text- text-center text-2xl leading-relaxed">
               {post.content}
